@@ -1,10 +1,11 @@
 val ktorVersion: String by project
 val kotlinVersion: String by project
+val kotlinCssVersion: String by project
 val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.4.30"
 }
 
 group = "ru.quect"
@@ -38,6 +39,6 @@ dependencies {
     implementation ("io.ktor:ktor-auth-jwt:$ktorVersion")
     implementation ("io.ktor:ktor-serialization:$ktorVersion")
     implementation("io.ktor:ktor-html-builder:$ktorVersion")
-    implementation("org.jetbrains:kotlin-css-jvm:1.0.0-pre.31-kotlin-1.2.41")
+    implementation("org.jetbrains:kotlin-css-jvm:$kotlinCssVersion")
     testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
 }
