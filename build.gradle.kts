@@ -5,14 +5,14 @@ val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.4.30"
+    kotlin("jvm") version "1.5.20"
 }
 
 group = "ru.quect"
 version = "4.0.0"
 
 application {
-    mainClassName = "io.ktor.server.netty.EngineMain"
+    mainClass.set("io.ktor.server.netty.EngineMain")
 }
 
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
@@ -23,13 +23,12 @@ sourceSets["test"].resources.srcDirs("testresources")
 
 repositories {
     mavenLocal()
-    jcenter()
     maven { url = uri("https://kotlin.bintray.com/ktor") }
     maven { url = uri("https://kotlin.bintray.com/kotlin-js-wrappers") }
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion")
+    implementation(kotlin("stdlib"))
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-server-core:$ktorVersion")
