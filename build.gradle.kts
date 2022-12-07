@@ -5,39 +5,39 @@ val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.5.20"
+    kotlin("jvm") version "1.7.22"
+    kotlin("plugin.serialization") version "1.7.22"
+    id("io.ktor.plugin") version "2.2.0"
 }
 
-group = "ru.quect"
+group = "ru.twentyfourqc"
 version = "4.0.0"
 
 application {
     mainClass.set("io.ktor.server.netty.EngineMain")
+
+    val isDevelopment: Boolean = project.ext.has("development")
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
-kotlin.sourceSets["main"].kotlin.srcDirs("src")
-kotlin.sourceSets["test"].kotlin.srcDirs("test")
-
-sourceSets["main"].resources.srcDirs("resources")
-sourceSets["test"].resources.srcDirs("testresources")
-
 repositories {
-    mavenLocal()
-    maven { url = uri("https://kotlin.bintray.com/ktor") }
-    maven { url = uri("https://kotlin.bintray.com/kotlin-js-wrappers") }
+    mavenCentral()
+    maven { url = uri("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers") }
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
+    implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-sessions-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth-jvm:$ktorVersion")
+    implementation ("io.ktor:ktor-server-auth-jwt-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-netty-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-resources:$ktorVersion")
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")
+    implementation("io.ktor:ktor-server-html-builder-jvm:$ktorVersion")
+    implementation("org.jetbrains.kotlin-wrappers:kotlin-css:$kotlinCssVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
-    implementation("io.ktor:ktor-server-netty:$ktorVersion")
-    implementation("io.ktor:ktor-server-core:$ktorVersion")
-    implementation ("io.ktor:ktor-server-sessions:$ktorVersion")
-    implementation ("io.ktor:ktor-locations:$ktorVersion")
-    implementation ("io.ktor:ktor-auth:$ktorVersion")
-    implementation ("io.ktor:ktor-auth-jwt:$ktorVersion")
-    implementation ("io.ktor:ktor-serialization:$ktorVersion")
-    implementation("io.ktor:ktor-html-builder:$ktorVersion")
-    implementation("org.jetbrains:kotlin-css-jvm:$kotlinCssVersion")
-    testImplementation("io.ktor:ktor-server-tests:$ktorVersion")
+
+    testImplementation("io.ktor:ktor-server-tests-jvm:$ktorVersion")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
 }

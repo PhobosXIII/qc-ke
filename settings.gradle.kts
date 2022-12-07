@@ -1,1 +1,1 @@
-rootProject.name = "server"
+rootProject.name = "24qc-server"
