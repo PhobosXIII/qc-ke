@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+    versionCatalogs {
+        create("ktorLibs").from("io.ktor:ktor-version-catalog:3.5.2")
+        create("exposedLibs").from("org.jetbrains.exposed:exposed-version-catalog:1.5.0")
+    }
+}
+
+rootProject.name = "qc-ke"
+
+include(":backend")
+include(":frontend")
+include(":shared")
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
