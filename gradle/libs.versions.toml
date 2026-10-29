@@ -1,21 +1,26 @@
 [versions]
-kotlin = "2.4.0"
-logback = "1.5.37"
-kotlinx-serialization = "1.11.0"
+kotlin = "2.4.21"
+logback = "1.6.6"
+kotlinx-serialization = "1.12.0"
 kotlinx-datetime = "0.8.0"
 
 hikaricp = "7.1.0"
-postgresql = "42.7.13"
-h2 = "2.4.240"
+postgresql = "42.7.14"
+h2 = "2.5.252"
+flyway = "13.11.1"
+
+jsonPath = "3.0.0"
 
 [libraries]
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+jsonPath = { module = "com.jayway.jsonpath:json-path", version.ref = "jsonPath" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
 hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 h2 = { module = "com.h2database:h2", version.ref = "h2" }
+flyway = { module = "org.flywaydb:flyway-core", version.ref = "flyway" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

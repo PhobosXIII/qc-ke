@@ -22,15 +22,25 @@ dependencies {
     implementation(ktorLibs.server.contentNegotiation)
     implementation(ktorLibs.server.core)
     implementation(ktorLibs.server.websockets)
+    implementation(ktorLibs.server.statusPages)
+    implementation(ktorLibs.server.di)
+
     implementation(libs.logback.classic)
+    implementation(libs.jsonPath)
 
     implementation(exposedLibs.core)
     implementation(exposedLibs.dao)
     implementation(exposedLibs.jdbc)
+    implementation(exposedLibs.kotlin.datetime)
+    implementation(exposedLibs.migration.core)
+    implementation(exposedLibs.migration.jdbc)
+
     implementation(libs.hikaricp)
     implementation(libs.postgresql)
     implementation(libs.h2)
+    implementation(libs.flyway)
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)
+    testImplementation(ktorLibs.client.contentNegotiation)
 }

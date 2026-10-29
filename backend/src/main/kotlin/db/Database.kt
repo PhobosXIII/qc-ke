@@ -16,13 +16,18 @@ import org.jetbrains.exposed.v1.jdbc.transactions.transaction
  * Соединение с БД в зависимости от окружения (разработка или прод)
  */
 fun Application.configureDb() {
-    val env = System.getenv("QC_APP_ENV") ?: "dev"
+//    val flyway = Flyway.configure()
+//        .dataSource(dbUrl, dbUser, dbPassword)
+//        .load()
+//    flyway.migrate()
+
+    val env = environment.config.propertyOrNull("ktor.env")?.getString() ?: "dev"
     if (env == "prod") {
         val config = HikariConfig().apply {
             driverClassName = "org.postgresql.Driver"
             jdbcUrl = "jdbc:postgresql://localhost:5432/qc_db"
             username = System.getenv("QC_DB_USER") ?: "postgres"
-            password = System.getenv("QC_DB_PASSWORD") ?: "secret"
+            password = System.getenv("QC_DB_PASSWORD") ?: "postgres"
             maximumPoolSize = 10
         }
         val dataSource = HikariDataSource(config)

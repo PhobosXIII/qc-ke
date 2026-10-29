@@ -9,3 +9,7 @@ build/
 
 .DS_Store
 Thumbs.db
+
+# AI for OpenIDE — local agent state (chat transcripts, memory, snapshots; may contain secrets).
+.aiforopenide/
+!.aiforopenide/config.json
